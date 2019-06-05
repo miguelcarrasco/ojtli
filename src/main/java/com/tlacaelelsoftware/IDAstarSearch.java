@@ -5,30 +5,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Stack;
 
-public abstract class IDAstarSearch<T> implements HeuristicSearch<T> {
+public class IDAstarSearch<T> implements PathSearch<T>{
     private HashMap<String, T> nodesMap = new HashMap<String, T>();
-    private T start;
-    private T goal;
-    private String startIndex;
     private String goalIndex;
     private Stack<String> pathIndexes = new Stack<String>();
     private int nodesVisited = 0;
+    private HeuristicSearch<T> heuristicSearch;
+
+    public IDAstarSearch(HeuristicSearch<T> heuristicSearch) {
+        this.heuristicSearch = heuristicSearch;
+    }
 
     public ResultPath<T> searchPath(T start, T goal) {
-        this.start = start;
-        this.goal = goal;
-        this.startIndex = getNodeIndex(start);
-        this.goalIndex = getNodeIndex(goal);
+        String startIndex = heuristicSearch.getNodeIndex(start);
+        this.goalIndex = heuristicSearch.getNodeIndex(goal);
 
-        pathIndexes.empty();
-        nodesMap.clear();
-        nodesVisited = 0;
+        emptyFields();
 
         pathIndexes.push(startIndex);
         nodesMap.put(startIndex, start);
         nodesMap.put(goalIndex, goal);
 
-        float bound = getHeuristicCostEstimate(start);
+        float bound = heuristicSearch.getHeuristicCostEstimate(start);
 
         while (true) {
             IDAstarSearchResult result = searchMinPath(0, bound);
@@ -39,6 +37,12 @@ public abstract class IDAstarSearch<T> implements HeuristicSearch<T> {
 
             bound = result.getMinScore();
         }
+    }
+
+    private void emptyFields() {
+        pathIndexes.empty();
+        nodesMap.clear();
+        nodesVisited = 0;
     }
 
     private ResultPath<T> getResultPath(Stack<String> pathIndexes) {
@@ -52,25 +56,26 @@ public abstract class IDAstarSearch<T> implements HeuristicSearch<T> {
     private IDAstarSearchResult searchMinPath(float gScore, float bound) {
         String currentNodeIndex = pathIndexes.pop();
         nodesVisited++;
-        float currentFScore = gScore + getHeuristicCostEstimate(nodesMap.get(currentNodeIndex));
+        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(nodesMap.get(currentNodeIndex));
 
         if (currentFScore > bound) {
             return new IDAstarSearchResult(false, currentFScore);
         }
-        if (currentNodeIndex.equals(getNodeIndex(goal))) {
+        if (currentNodeIndex.equals(goalIndex)) {
             return new IDAstarSearchResult(true, currentFScore);
         }
 
         float minScore = Float.MAX_VALUE;
 
-        for (T currentNeighbor : getNeighbors(nodesMap.get(currentNodeIndex))) {
-            String currentNeighborIndex = getNodeIndex(currentNeighbor);
+        for (T currentNeighbor : heuristicSearch.getNeighbors(nodesMap.get(currentNodeIndex))) {
+            String currentNeighborIndex = heuristicSearch.getNodeIndex(currentNeighbor);
             nodesMap.put(currentNeighborIndex, currentNeighbor);
 
             if (!pathIndexes.contains(currentNeighborIndex)) {
                 pathIndexes.push(currentNeighborIndex);
                 IDAstarSearchResult result = searchMinPath(
-                        gScore + getCost(nodesMap.get(currentNodeIndex), currentNeighbor), bound);
+                        gScore + heuristicSearch.getCost(
+                                nodesMap.get(currentNodeIndex), currentNeighbor), bound);
                 if (result.isGoalFound()) {
                     // en el javascript aquí se creaba otro objeto, a lo mejor pasar simplemente
                     // el result es una optimización.
