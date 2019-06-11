@@ -23,17 +23,15 @@ public class IDAstarSearch<T> implements PathSearch<T> {
         while (true) {
             IDAstarSearchResult result = searchMinPath(0, bound);
             if (result.isGoalFound()) {
-
                 return new ResultPath<T>(nodesVisited, pathNodes);
             }
-            //TODO falta el caso en que no encuentre nada
+            //TODO Return empty result path when there is no way to reach the goal.
 
             bound = result.getMinScore();
         }
     }
 
     private IDAstarSearchResult searchMinPath(float gScore, float bound) {
-//        T currentNode = pathNodes.pop();
         T currentNode = pathNodes.peek();
         nodesVisited++;
         float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode);
@@ -48,26 +46,19 @@ public class IDAstarSearch<T> implements PathSearch<T> {
         float minScore = Float.MAX_VALUE;
 
         for (T currentNeighbor : heuristicSearch.getNeighbors(currentNode)) {
-
             if (!pathNodes.contains(currentNeighbor)) {
                 pathNodes.push(currentNeighbor);
                 IDAstarSearchResult result = searchMinPath(
                         gScore + heuristicSearch.getCost(currentNode, currentNeighbor), bound);
                 if (result.isGoalFound()) {
-                    // en el javascript aquí se creaba otro objeto, a lo mejor pasar simplemente
-                    // el result es una optimización.
                     return result;
                 }
-
                 if (result.getMinScore() < minScore) {
                     minScore = result.getMinScore();
                 }
-
                 pathNodes.pop();
             }
         }
-
-        // TODO cambiar este return a tirar una exception de que no se encontró (revisar flujo)
         return new IDAstarSearchResult(false, minScore);
     }
 }
