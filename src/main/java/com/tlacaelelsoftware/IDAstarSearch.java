@@ -1,37 +1,30 @@
 package com.tlacaelelsoftware;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Stack;
 
-public class IDAstarSearch<T> implements PathSearch<T>{
-    private HashMap<String, T> nodesMap = new HashMap<String, T>();
-    private String goalIndex;
-    private Stack<String> pathIndexes = new Stack<String>();
+public class IDAstarSearch<T> implements PathSearch<T> {
+    private Stack<T> pathNodes = new Stack<T>();
     private int nodesVisited = 0;
     private HeuristicSearch<T> heuristicSearch;
+    private T goal;
 
     public IDAstarSearch(HeuristicSearch<T> heuristicSearch) {
         this.heuristicSearch = heuristicSearch;
     }
 
     public ResultPath<T> searchPath(T start, T goal) {
-        String startIndex = heuristicSearch.getNodeIndex(start);
-        this.goalIndex = heuristicSearch.getNodeIndex(goal);
-
-        emptyFields();
-
-        pathIndexes.push(startIndex);
-        nodesMap.put(startIndex, start);
-        nodesMap.put(goalIndex, goal);
+        pathNodes.empty();
+        nodesVisited = 0;
+        this.goal = goal;
+        pathNodes.push(start);
 
         float bound = heuristicSearch.getHeuristicCostEstimate(start);
 
         while (true) {
             IDAstarSearchResult result = searchMinPath(0, bound);
             if (result.isGoalFound()) {
-                return getResultPath(pathIndexes);
+
+                return new ResultPath<T>(nodesVisited, pathNodes);
             }
             //TODO falta el caso en que no encuentre nada
 
@@ -39,43 +32,27 @@ public class IDAstarSearch<T> implements PathSearch<T>{
         }
     }
 
-    private void emptyFields() {
-        pathIndexes.empty();
-        nodesMap.clear();
-        nodesVisited = 0;
-    }
-
-    private ResultPath<T> getResultPath(Stack<String> pathIndexes) {
-        List<T> path = new ArrayList<T>();
-        for (String currentNodeIndex : pathIndexes) {
-            path.add(nodesMap.get(currentNodeIndex));
-        }
-        return new ResultPath<T>(nodesVisited, path);
-    }
-
     private IDAstarSearchResult searchMinPath(float gScore, float bound) {
-        String currentNodeIndex = pathIndexes.pop();
+//        T currentNode = pathNodes.pop();
+        T currentNode = pathNodes.peek();
         nodesVisited++;
-        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(nodesMap.get(currentNodeIndex));
+        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode);
 
         if (currentFScore > bound) {
             return new IDAstarSearchResult(false, currentFScore);
         }
-        if (currentNodeIndex.equals(goalIndex)) {
+        if (currentNode.equals(goal)) {
             return new IDAstarSearchResult(true, currentFScore);
         }
 
         float minScore = Float.MAX_VALUE;
 
-        for (T currentNeighbor : heuristicSearch.getNeighbors(nodesMap.get(currentNodeIndex))) {
-            String currentNeighborIndex = heuristicSearch.getNodeIndex(currentNeighbor);
-            nodesMap.put(currentNeighborIndex, currentNeighbor);
+        for (T currentNeighbor : heuristicSearch.getNeighbors(currentNode)) {
 
-            if (!pathIndexes.contains(currentNeighborIndex)) {
-                pathIndexes.push(currentNeighborIndex);
+            if (!pathNodes.contains(currentNeighbor)) {
+                pathNodes.push(currentNeighbor);
                 IDAstarSearchResult result = searchMinPath(
-                        gScore + heuristicSearch.getCost(
-                                nodesMap.get(currentNodeIndex), currentNeighbor), bound);
+                        gScore + heuristicSearch.getCost(currentNode, currentNeighbor), bound);
                 if (result.isGoalFound()) {
                     // en el javascript aquí se creaba otro objeto, a lo mejor pasar simplemente
                     // el result es una optimización.
@@ -86,7 +63,7 @@ public class IDAstarSearch<T> implements PathSearch<T>{
                     minScore = result.getMinScore();
                 }
 
-                pathIndexes.pop();
+                pathNodes.pop();
             }
         }
 
@@ -99,16 +76,16 @@ class IDAstarSearchResult {
     private boolean isGoalFound;
     private float minScore;
 
-    public IDAstarSearchResult(boolean isGoalFound, float minScore) {
+    IDAstarSearchResult(boolean isGoalFound, float minScore) {
         this.isGoalFound = isGoalFound;
         this.minScore = minScore;
     }
 
-    public boolean isGoalFound() {
+    boolean isGoalFound() {
         return isGoalFound;
     }
 
-    public float getMinScore() {
+    float getMinScore() {
         return minScore;
     }
 }
