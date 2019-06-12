@@ -31,8 +31,6 @@ class IDAstarSearchTest {
         Node nodeN = new Node("n", 0f);
 
         Graph graph = new Graph();
-        graph.addNodes(Arrays.asList(nodeA, nodeB, nodeC, nodeD, nodeE, nodeF, nodeG,
-                nodeH, nodeI, nodeJ, nodeK, nodeL, nodeM, nodeN));
         graph.addEdges(Arrays.asList(
                 new Edge(nodeA, nodeB, 1.5f),
                 new Edge(nodeB, nodeC, 1f),
