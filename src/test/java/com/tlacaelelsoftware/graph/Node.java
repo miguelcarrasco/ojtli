@@ -1,7 +1,7 @@
 package com.tlacaelelsoftware.graph;
 
 public class Node {
-    private String name;
+    private final String name;
     private float goalHeuristicCost;
 
     public Node(String name, float goalHeuristicCost) {

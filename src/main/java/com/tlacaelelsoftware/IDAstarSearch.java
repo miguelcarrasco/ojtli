@@ -18,7 +18,7 @@ public class IDAstarSearch<T> implements PathSearch<T> {
         this.goal = goal;
         pathNodes.push(start);
 
-        float bound = heuristicSearch.getHeuristicCostEstimate(start);
+        float bound = heuristicSearch.getHeuristicCostEstimate(start,this.goal);
 
         while (true) {
             IDAstarSearchResult result = searchMinPath(0, bound);
@@ -34,7 +34,7 @@ public class IDAstarSearch<T> implements PathSearch<T> {
     private IDAstarSearchResult searchMinPath(float gScore, float bound) {
         T currentNode = pathNodes.peek();
         nodesVisited++;
-        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode);
+        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode,this.goal);
 
         if (currentFScore > bound) {
             return new IDAstarSearchResult(false, currentFScore);

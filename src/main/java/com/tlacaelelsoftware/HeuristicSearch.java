@@ -3,7 +3,7 @@ package com.tlacaelelsoftware;
 import java.util.List;
 
 public interface HeuristicSearch<T> {
-    float getHeuristicCostEstimate(T node);
+    float getHeuristicCostEstimate(T node, T goal);
 
     float getCost(T startNode, T endNode);
 

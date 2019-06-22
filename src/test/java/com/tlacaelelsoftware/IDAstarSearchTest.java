@@ -4,6 +4,8 @@ import com.tlacaelelsoftware.graph.Edge;
 import com.tlacaelelsoftware.graph.Graph;
 import com.tlacaelelsoftware.graph.GraphSearch;
 import com.tlacaelelsoftware.graph.Node;
+import com.tlacaelelsoftware.npuzzle.Npuzzle;
+import com.tlacaelelsoftware.npuzzle.NpuzzleSearch;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -13,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class IDAstarSearchTest {
 
     @Test
-    void testHeuristicSearchOnTestingGraph() {
+    void testHeuristicSearchOnGraphs() {
 
         Node nodeA = new Node("a", 8f);
         Node nodeB = new Node("b", 7.5f);
@@ -55,6 +57,67 @@ class IDAstarSearchTest {
         PathSearch<Node> pathSearch = new IDAstarSearch<Node>(new GraphSearch(graph));
         ResultPath<Node> resultPath = pathSearch.searchPath(nodeA, nodeN);
 
-        assertEquals(resultPath.getPath(), Arrays.asList(nodeA, nodeB, nodeC, nodeD, nodeH, nodeJ, nodeK, nodeL, nodeN));
+        assertEquals(Arrays.asList(nodeA, nodeB, nodeC, nodeD, nodeH, nodeJ, nodeK, nodeL, nodeN), resultPath.getPath());
+    }
+
+    @Test
+    void testNpuzzleSearch() {
+        Npuzzle start = new Npuzzle(3, new int[]{
+                2, 3, 5,
+                1, 4, 0,
+                7, 8, 6,
+        });
+
+        Npuzzle goal = new Npuzzle(3, new int[]{
+                1, 2, 3,
+                4, 5, 6,
+                7, 8, 0
+        });
+
+        PathSearch<Npuzzle> pathSearch = new IDAstarSearch<Npuzzle>(new NpuzzleSearch());
+        ResultPath<Npuzzle> resultPath = pathSearch.searchPath(start, goal);
+        assertEquals(8, resultPath.getPath().size());
+        assertEquals(Arrays.asList(
+                new Npuzzle(3, new int[]{
+                        2, 3, 5,
+                        1, 4, 0,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        2, 3, 0,
+                        1, 4, 5,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        2, 0, 3,
+                        1, 4, 5,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        0, 2, 3,
+                        1, 4, 5,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        1, 2, 3,
+                        0, 4, 5,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        1, 2, 3,
+                        4, 0, 5,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        1, 2, 3,
+                        4, 5, 0,
+                        7, 8, 6,
+                }),
+                new Npuzzle(3, new int[]{
+                        1, 2, 3,
+                        4, 5, 6,
+                        7, 8, 0,
+                })
+        ), resultPath.getPath());
     }
 }

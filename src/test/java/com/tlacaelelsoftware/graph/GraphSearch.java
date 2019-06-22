@@ -12,7 +12,7 @@ public class GraphSearch implements HeuristicSearch<Node> {
         this.graph = graph;
     }
 
-    public float getHeuristicCostEstimate(Node node) {
+    public float getHeuristicCostEstimate(Node node, Node goal) {
         return node.getGoalHeuristicCost();
     }
 
