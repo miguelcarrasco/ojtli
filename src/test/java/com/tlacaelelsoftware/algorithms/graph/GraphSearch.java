@@ -1,6 +1,6 @@
-package com.tlacaelelsoftware.graph;
+package com.tlacaelelsoftware.algorithms.graph;
 
-import com.tlacaelelsoftware.HeuristicSearch;
+import com.tlacaelelsoftware.algorithms.HeuristicSearch;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.graph;
+package com.tlacaelelsoftware.algorithms.graph;
 
 public class Node {
     private final String name;

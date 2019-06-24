@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.graph;
+package com.tlacaelelsoftware.algorithms.graph;
 
 
 import java.util.ArrayList;

@@ -1,7 +1,7 @@
-package com.tlacaelelsoftware.npuzzle;
+package com.tlacaelelsoftware.algorithms.npuzzle;
 
-import com.tlacaelelsoftware.HeuristicSearch;
-import com.tlacaelelsoftware.Utils;
+import com.tlacaelelsoftware.algorithms.HeuristicSearch;
+import com.tlacaelelsoftware.algorithms.Utils;
 
 import java.util.List;
 

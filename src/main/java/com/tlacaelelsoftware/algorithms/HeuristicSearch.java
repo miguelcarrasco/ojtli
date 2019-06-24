@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware;
+package com.tlacaelelsoftware.algorithms;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.tlacaelelsoftware;
+package com.tlacaelelsoftware.algorithms;
 
-import com.tlacaelelsoftware.graph.Edge;
-import com.tlacaelelsoftware.graph.Graph;
-import com.tlacaelelsoftware.graph.GraphSearch;
-import com.tlacaelelsoftware.graph.Node;
-import com.tlacaelelsoftware.npuzzle.Npuzzle;
-import com.tlacaelelsoftware.npuzzle.NpuzzleSearch;
+import com.tlacaelelsoftware.algorithms.graph.Edge;
+import com.tlacaelelsoftware.algorithms.graph.Graph;
+import com.tlacaelelsoftware.algorithms.graph.GraphSearch;
+import com.tlacaelelsoftware.algorithms.graph.Node;
+import com.tlacaelelsoftware.algorithms.npuzzle.Npuzzle;
+import com.tlacaelelsoftware.algorithms.npuzzle.NpuzzleSearch;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

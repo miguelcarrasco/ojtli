@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware;
+package com.tlacaelelsoftware.algorithms;
 
 public class Utils {
 

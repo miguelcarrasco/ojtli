@@ -1,6 +1,6 @@
-package com.tlacaelelsoftware.npuzzle;
+package com.tlacaelelsoftware.algorithms.npuzzle;
 
-import com.tlacaelelsoftware.Utils;
+import com.tlacaelelsoftware.algorithms.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
