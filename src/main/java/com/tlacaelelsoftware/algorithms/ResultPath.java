@@ -4,6 +4,7 @@ import java.util.List;
 
 /**
  * A class that contains the resulting path of a path search.
+ *
  * @param <T> the type of objects that represent a node in the searched graph.
  */
 public class ResultPath<T> {
@@ -12,7 +13,7 @@ public class ResultPath<T> {
 
     /**
      * @param nodesVisited number of visited nodes.
-     * @param path a list containing the path founded.
+     * @param path         a list containing the path founded.
      */
     public ResultPath(int nodesVisited, List<T> path) {
         this.nodesVisited = nodesVisited;

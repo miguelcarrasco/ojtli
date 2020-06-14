@@ -42,7 +42,7 @@ public class Graph {
 
     List<Node> getNeighbors(Node node) {
         List<Node> nodeNeighbors = neighbors.get(node);
-        if(nodeNeighbors==null){
+        if (nodeNeighbors == null) {
             return new ArrayList<Node>();
         }
         return nodeNeighbors;

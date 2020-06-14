@@ -4,6 +4,7 @@ import java.util.Stack;
 
 /**
  * A generic IDA* algorithm implementation
+ *
  * @param <T> The object that represents the "vertices" of the graph
  */
 public class IDAstarSearch<T> implements PathSearch<T> {
@@ -14,6 +15,7 @@ public class IDAstarSearch<T> implements PathSearch<T> {
 
     /**
      * Constructor that uses {@link HeuristicSearch} implementation for graph traversal.
+     *
      * @param heuristicSearch the {@link HeuristicSearch} implementation.
      */
     public IDAstarSearch(HeuristicSearch<T> heuristicSearch) {
@@ -22,8 +24,9 @@ public class IDAstarSearch<T> implements PathSearch<T> {
 
     /**
      * Perform a search for an optimal path from start to goal nodes using IDA* algorithm
+     *
      * @param start the start node
-     * @param goal the goal node
+     * @param goal  the goal node
      * @return a {@link ResultPath} containing an optimal path from start to goal nodes.
      */
     public ResultPath<T> searchPath(T start, T goal) {
@@ -32,7 +35,7 @@ public class IDAstarSearch<T> implements PathSearch<T> {
         this.goal = goal;
         pathNodes.push(start);
 
-        float bound = heuristicSearch.getHeuristicCostEstimate(start,this.goal);
+        float bound = heuristicSearch.getHeuristicCostEstimate(start, this.goal);
 
         while (true) {
             IDAstarSearchResult result = searchMinPath(0, bound);
@@ -47,14 +50,15 @@ public class IDAstarSearch<T> implements PathSearch<T> {
 
     /**
      * Recursive IDA* search implementation
+     *
      * @param gScore heuristic total cost estimate
-     * @param bound maximum cost bound
+     * @param bound  maximum cost bound
      * @return An {@link IDAstarSearchResult} with a result of this search.
      */
     private IDAstarSearchResult searchMinPath(float gScore, float bound) {
         T currentNode = pathNodes.peek();
         nodesVisited++;
-        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode,this.goal);
+        float currentFScore = gScore + heuristicSearch.getHeuristicCostEstimate(currentNode, this.goal);
 
         if (currentFScore > bound) {
             return new IDAstarSearchResult(false, currentFScore);

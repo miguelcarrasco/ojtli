@@ -17,7 +17,7 @@ public class GraphSearch implements HeuristicSearch<Node> {
     }
 
     public float getCost(Node startNode, Node endNode) {
-        return graph.getCost(startNode,endNode);
+        return graph.getCost(startNode, endNode);
     }
 
     public List<Node> getNeighbors(Node node) {
