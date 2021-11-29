@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.miguelcarrasco</groupId>
     <artifactId>ojtli</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <name>Ojtli</name>
     <description>A minimal and generic Java graph traversal and path finding algorithms library</description>
