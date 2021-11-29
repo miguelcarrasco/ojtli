@@ -8,8 +8,10 @@ library which makes it very lightweight.
 Current version implements the following path search algorithms:
 
 - **[Iterative deepening A* (IDA*)](https://en.wikipedia.org/w/index.php?title=Iterative_deepening_A*&oldid=1032176059)**:
-  The algorithm described in the ["Depth-First Iterative-Deepening: An Optimal Admissible Tree Search*"]() paper by
-  Richard E. Korf for the _[Artifitial Ingelligence](https://www.journals.elsevier.com/artificial-intelligence)_
+  The algorithm described in
+  the ["Depth-First Iterative-Deepening: An Optimal Admissible Tree Search*"](http://www.cse.sc.edu/~mgv/csce580f09/gradPres/korf_IDAStar_1985.pdf)
+  paper by Richard E. Korf for
+  the _[Artifitial Ingelligence](https://www.journals.elsevier.com/artificial-intelligence)_
   Journal. doi:[10.1016/0004-3702(85)90084-0](https://doi.org/10.1016%2F0004-3702%2885%2990084-0)
 
 ## Usage
