@@ -55,7 +55,7 @@ public interface HeuristicSearch<T> {
 ```
 
 Note that this interface use a [generic](https://docs.oracle.com/javase/tutorial/extra/generics/index.html)
-parameter. The generic parameter allows you to use a class that represent a node in your graph.
+parameter. The generic parameter allows you to use a class that represents a node in your graph.
 
 For instance, suppose that you created a **Node** class in your code to represent a node on a graph, then a
 **GraphSearch** class can be created to implement the **HeuristicSearch** interface.
