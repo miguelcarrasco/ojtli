@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.algorithms.graph;
+package io.github.miguelcarrasco.ojtli.graph;
 
 
 import java.util.ArrayList;

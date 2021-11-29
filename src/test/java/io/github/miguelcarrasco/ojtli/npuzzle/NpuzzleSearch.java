@@ -1,7 +1,7 @@
-package com.tlacaelelsoftware.algorithms.npuzzle;
+package io.github.miguelcarrasco.ojtli.npuzzle;
 
-import com.tlacaelelsoftware.algorithms.HeuristicSearch;
-import com.tlacaelelsoftware.algorithms.Utils;
+import io.github.miguelcarrasco.ojtli.HeuristicSearch;
+import io.github.miguelcarrasco.ojtli.Utils;
 
 import java.util.List;
 

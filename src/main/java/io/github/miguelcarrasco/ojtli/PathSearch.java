@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.algorithms;
+package io.github.miguelcarrasco.ojtli;
 
 /**
  * A simple interface for path searching in a graph

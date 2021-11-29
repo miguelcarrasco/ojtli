@@ -1,6 +1,6 @@
-package com.tlacaelelsoftware.algorithms.graph;
+package io.github.miguelcarrasco.ojtli.graph;
 
-import com.tlacaelelsoftware.algorithms.HeuristicSearch;
+import io.github.miguelcarrasco.ojtli.HeuristicSearch;
 
 import java.util.List;
 

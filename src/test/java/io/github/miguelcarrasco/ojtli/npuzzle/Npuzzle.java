@@ -1,6 +1,6 @@
-package com.tlacaelelsoftware.algorithms.npuzzle;
+package io.github.miguelcarrasco.ojtli.npuzzle;
 
-import com.tlacaelelsoftware.algorithms.Utils;
+import io.github.miguelcarrasco.ojtli.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

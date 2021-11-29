@@ -1,11 +1,11 @@
-package com.tlacaelelsoftware.algorithms;
+package io.github.miguelcarrasco.ojtli;
 
-import com.tlacaelelsoftware.algorithms.graph.Edge;
-import com.tlacaelelsoftware.algorithms.graph.Graph;
-import com.tlacaelelsoftware.algorithms.graph.GraphSearch;
-import com.tlacaelelsoftware.algorithms.graph.Node;
-import com.tlacaelelsoftware.algorithms.npuzzle.Npuzzle;
-import com.tlacaelelsoftware.algorithms.npuzzle.NpuzzleSearch;
+import io.github.miguelcarrasco.ojtli.graph.Edge;
+import io.github.miguelcarrasco.ojtli.npuzzle.NpuzzleSearch;
+import io.github.miguelcarrasco.ojtli.graph.Graph;
+import io.github.miguelcarrasco.ojtli.graph.GraphSearch;
+import io.github.miguelcarrasco.ojtli.graph.Node;
+import io.github.miguelcarrasco.ojtli.npuzzle.Npuzzle;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

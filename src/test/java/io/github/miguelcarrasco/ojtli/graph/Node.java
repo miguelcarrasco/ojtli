@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.algorithms.graph;
+package io.github.miguelcarrasco.ojtli.graph;
 
 public class Node {
     private final String name;

@@ -1,4 +1,4 @@
-package com.tlacaelelsoftware.algorithms;
+package io.github.miguelcarrasco.ojtli;
 
 import java.util.List;
 
