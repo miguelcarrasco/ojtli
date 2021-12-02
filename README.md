@@ -14,6 +14,28 @@ Current version implements the following path search algorithms:
   the _[Artifitial Ingelligence](https://www.journals.elsevier.com/artificial-intelligence)_
   Journal. doi:[10.1016/0004-3702(85)90084-0](https://doi.org/10.1016%2F0004-3702%2885%2990084-0)
 
+## Download and Install
+
+To download and install Ojtli you currently have the following options.
+
+**Maven**
+
+Add dependency to `io.github.miguelcarrasco:ojtli`:
+
+```xml
+<dependency>
+    <groupId>io.github.miguelcarrasco</groupId>
+    <artifactId>ojtli</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+**Plain-old JAR**
+
+Download the following JAR and add it to your classpath:
+
+* [ojtli-1.0.0.jar](https://search.maven.org/remotecontent?filepath=io/github/miguelcarrasco/ojtli/1.0.0/ojtli-1.0.0.jar)
+
 ## Usage
 
 1. You need to create a class that implements the HeuristicSearch interface:
